@@ -101,6 +101,7 @@ require('lazy').setup({
   },
 
   { import = "plugins.nvim-tree" },
+  { import = "plugins.fine-cmdline" },
 
   {
     -- Autocompletion
@@ -295,7 +296,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', ':fe', ':NvimTreeFocus<CR>')
+vim.keymap.set('n', '<leader>f', ':NvimTreeFocus<CR>', {desc = "Open [f]ile explorer" })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
