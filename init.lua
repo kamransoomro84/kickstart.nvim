@@ -296,7 +296,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set('n', '<leader>f', ':NvimTreeFocus<CR>', {desc = "Open [f]ile explorer" })
+vim.keymap.set('n', '<leader>f', '<cmd>NvimTreeFocus<CR>', {desc = "Open [f]ile explorer" })
+vim.keymap.set('n', ':', '<cmd>FineCmdline<CR>')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
