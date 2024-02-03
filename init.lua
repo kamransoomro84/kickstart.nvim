@@ -528,6 +528,14 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+-- Setup typst-lsp
+require 'lspconfig'.typst_lsp.setup{
+  settings = {
+    exportPdf = "onType" -- Choose onType, onSave or never.
+    -- serverPath = "" -- Normally, there is no need to uncomment it.
+  }
+}
+
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
 local cmp = require 'cmp'
