@@ -100,6 +100,8 @@ require('lazy').setup({
     },
   },
 
+  { import = 'plugins.typst' },
+
   { import = "plugins.nvim-tree" },
   { import = "plugins.fine-cmdline" },
 
@@ -529,7 +531,7 @@ mason_lspconfig.setup_handlers {
 }
 
 -- Setup typst-lsp
-require 'lspconfig'.typst_lsp.setup{
+require'lspconfig'.typst_lsp.setup{
   settings = {
     exportPdf = "onType" -- Choose onType, onSave or never.
     -- serverPath = "" -- Normally, there is no need to uncomment it.
