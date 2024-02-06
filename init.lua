@@ -586,5 +586,11 @@ cmp.setup {
   },
 }
 
+-- Add keymaps for Mac-style movement and text manipulation
+vim.keymap.set('i', '<M-b>', '<S-Left>', { desc = 'Move to start of word' })
+vim.keymap.set('i', '<M-f>', '<S-Right>', { desc = 'Move to next word' })
+vim.keymap.set('i', '<M-BS>', '<C-W>', { desc = 'Delete previous word' })
+
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
