@@ -588,8 +588,18 @@ cmp.setup {
 
 -- Add keymaps for Mac-style movement and text manipulation
 vim.keymap.set('i', '<M-b>', '<S-Left>', { desc = 'Move to start of word' })
+vim.keymap.set('i', '<M-Left>', '<S-Left>', { desc = 'Move to start of word' })
 vim.keymap.set('i', '<M-f>', '<S-Right>', { desc = 'Move to next word' })
+vim.keymap.set('i', '<M-Right>', '<S-Right>', { desc = 'Move to next word' })
 vim.keymap.set('i', '<M-BS>', '<C-W>', { desc = 'Delete previous word' })
+
+-- Configure spelling
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_gb' }
+
+vim.keymap.set("n", "<leader>s", function()
+  require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor({}))
+end, { desc = "Spelling Suggestions" })
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
