@@ -178,9 +178,21 @@ require('lazy').setup({
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    priority = 1000,
-    opts = {},
+    opts = {
+    },
     config = function()
+      require("tokyonight").setup({
+        on_highlights = function(highlights, colors)
+          highlights["@markup.strong"] = {
+            fg = colors.orange,
+            bold = true
+          }
+          highlights["@markup.italic"] = {
+            fg = colors.cyan,
+            italic = true
+          }
+        end
+      })
       vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
