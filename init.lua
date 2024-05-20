@@ -118,6 +118,19 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      "hrsh7th/cmp-nvim-lsp-signature-help",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-emoji",
+      "f3fora/cmp-spell",
+      "ray-x/cmp-treesitter",
+      "kdheepak/cmp-latex-symbols",
+      "jmbuhr/cmp-pandoc-references",
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+      "onsails/lspkind-nvim",
     },
   },
 
@@ -232,7 +245,35 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
+  {
+    "quarto-dev/quarto-nvim",
+    dev = false,
+    dependencies = {
+      {
+        "jmbuhr/otter.nvim",
+        dev = false,
+        opts = {
+          lsp = {
+            hover = {
+              border = require("misc.style").border,
+            },
+          },
+          buffers = {
+            -- if set to true, the filetype of the otterbuffers will be set.
+            -- otherwise only the autocommand of lspconfig that attaches
+            -- the language server will be executed without setting the filetype
+            set_filetype = true,
+          },
+        },
+      },
+    },
+    opts = {
+      lspFeatures = {
+        languages = { "r", "python", "julia", "bash", "lua", "html", "dot" },
+      },
+    },
+  },
+-- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
   -- require 'kickstart.plugins.autoformat',
@@ -604,3 +645,6 @@ end, { desc = "Spelling Suggestions" })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Add word wrapping
+vim.opt.linebreak = true
