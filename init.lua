@@ -77,6 +77,7 @@ require('lazy').setup({
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'cweagans/vim-taskpaper',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -103,8 +104,14 @@ require('lazy').setup({
   { import = 'plugins.typst' },
 
   { import = "plugins.nvim-tree" },
-  { import = "plugins.fine-cmdline" },
-
+  { import = "plugins.fine-cmdline" },-- install with yarn or npm
+  -- install without yarn or npm
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -178,8 +185,7 @@ require('lazy').setup({
   {
     "folke/tokyonight.nvim",
     lazy = false,
-    opts = {
-    },
+    opts = {},
     config = function()
       require("tokyonight").setup({
         on_highlights = function(highlights, colors)
@@ -649,6 +655,8 @@ vim.keymap.set('i', '<M-BS>', '<C-W>', { desc = 'Delete previous word' })
 -- Configure spelling
 vim.opt.spell = true
 vim.opt.spelllang = { 'en_gb' }
+
+vim.opt.conceallevel = 2
 
 vim.keymap.set("n", "<leader>s", function()
   require("telescope.builtin").spell_suggest(require("telescope.themes").get_cursor({}))
