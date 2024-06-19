@@ -81,6 +81,8 @@ require('lazy').setup({
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
+  { import = 'plugins.obsidian' },
+  { import = 'plugins.vimtex' },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -104,7 +106,9 @@ require('lazy').setup({
   { import = 'plugins.typst' },
 
   { import = "plugins.nvim-tree" },
-  { import = "plugins.fine-cmdline" },-- install with yarn or npm
+  { import = "plugins.fine-cmdline" },
+  
+  -- install with yarn or npm
   -- install without yarn or npm
   {
     "iamcco/markdown-preview.nvim",
@@ -375,6 +379,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
+    layout_strategy = "vertical",
     mappings = {
       i = {
         ['<C-u>'] = false,
