@@ -83,6 +83,7 @@ require('lazy').setup({
   'tpope/vim-sleuth',
   { import = 'plugins.obsidian' },
   { import = 'plugins.vimtex' },
+  'emakman/nvim-latex-previewer',
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -109,13 +110,15 @@ require('lazy').setup({
   { import = "plugins.fine-cmdline" },
   
   -- install with yarn or npm
-  -- install without yarn or npm
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
+ {
+   "iamcco/markdown-preview.nvim",
+   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+   build = "cd app && npm install",
+   init = function()
+     vim.g.mkdp_filetypes = { "markdown" }
+   end,
+   ft = { "markdown" },
+ },
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -198,8 +201,8 @@ require('lazy').setup({
             bold = true
           }
           highlights["@markup.italic"] = {
-            fg = colors.cyan,
-            italic = true
+            italic = true,
+            fg = colors.cyan
           }
         end
       })
@@ -295,6 +298,7 @@ require('lazy').setup({
       },
     },
   },
+  { import = "plugins.moveline" },
 -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -673,3 +677,11 @@ end, { desc = "Spelling Suggestions" })
 
 -- Add word wrapping
 vim.opt.linebreak = true
+
+
+-- Add mappings for moveline
+local moveline = require('moveline')
+vim.keymap.set('n', '[e', moveline.up)
+vim.keymap.set('n', ']e', moveline.down)
+vim.keymap.set('v', '[e', moveline.block_up)
+vim.keymap.set('v', ']e', moveline.block_down)
