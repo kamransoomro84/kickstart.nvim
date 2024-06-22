@@ -70,6 +70,9 @@ return {
       ["<leader>os"] = {
         action = ":ObsidianSearch<CR>",
       },
+      ["<leader>on"] = {
+        action="<cmd>ObsidianNew<CR>",
+      }
     },
 
     -- Where to put new notes. Valid options are
@@ -82,7 +85,7 @@ return {
     ---@return string|obsidian.Path The full path to the new note.
     note_path_func = function(spec)
       -- This is equivalent to the default behavior.
-      local path = spec.dir -- / tostring(spec.id)
+      local path = spec.dir / tostring(spec.id)
       return path:with_suffix(".md")
     end,
 
