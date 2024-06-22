@@ -1,4 +1,5 @@
 --[[
+vim.keymap.set('n', '<leader>]', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
@@ -108,17 +109,20 @@ require('lazy').setup({
 
   { import = "plugins.nvim-tree" },
   { import = "plugins.fine-cmdline" },
-  
+  {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
   -- install with yarn or npm
- {
-   "iamcco/markdown-preview.nvim",
-   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-   build = "cd app && npm install",
-   init = function()
-     vim.g.mkdp_filetypes = { "markdown" }
-   end,
-   ft = { "markdown" },
- },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -142,8 +146,6 @@ require('lazy').setup({
       "ray-x/cmp-treesitter",
       "kdheepak/cmp-latex-symbols",
       "jmbuhr/cmp-pandoc-references",
-      "L3MON4D3/LuaSnip",
-      "rafamadriz/friendly-snippets",
       "onsails/lspkind-nvim",
     },
   },
@@ -610,6 +612,7 @@ require'lspconfig'.typst_lsp.setup{
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+luasnip.filetype_extend("all", { "loremipsum" })
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
@@ -681,7 +684,13 @@ vim.opt.linebreak = true
 
 -- Add mappings for moveline
 local moveline = require('moveline')
-vim.keymap.set('n', '[e', moveline.up)
-vim.keymap.set('n', ']e', moveline.down)
-vim.keymap.set('v', '[e', moveline.block_up)
-vim.keymap.set('v', ']e', moveline.block_down)
+vim.keymap.set('n', '[e', moveline.up, { desc = 'Move line up' })
+vim.keymap.set('n', ']e', moveline.down, { desc = 'Move line down' })
+vim.keymap.set('v', '[e', moveline.block_up, { desc = 'Move visual block up' })
+vim.keymap.set('v', ']e', moveline.block_down, { desc = 'Move visual block down'})
+vim.keymap.set('n', '[t', '<cmd>tabp<cr>', { desc = 'Next tab' })
+vim.keymap.set('n', ']t', '<cmd>tabn<cr>', { desc = 'Previous tab' })
+vim.keymap.set('n', ']tn', '<cmd>tabnew<cr>', { desc = 'New tab' })
+vim.keymap.set('n', ']b', '<cmd>bn<cr>', { desc = 'Next buffer' })
+vim.keymap.set('n', '[b', '<cmd>bp<cr>', { desc = 'Previous buffer' })
+
