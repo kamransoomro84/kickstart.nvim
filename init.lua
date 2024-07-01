@@ -62,7 +62,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwPlugi = 1
 
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
@@ -75,10 +75,6 @@ vim.opt.termguicolors = true
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-  'cweagans/vim-taskpaper',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -191,26 +187,6 @@ require('lazy').setup({
   --     vim.cmd.colorscheme 'onedark'
   --   end,
   -- },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    opts = {},
-    config = function()
-      require("tokyonight").setup({
-        on_highlights = function(highlights, colors)
-          highlights["@markup.strong"] = {
-            fg = colors.orange,
-            bold = true
-          }
-          highlights["@markup.italic"] = {
-            italic = true,
-            fg = colors.cyan
-          }
-        end
-      })
-      vim.cmd.colorscheme 'tokyonight-night'
-    end,
-  },
 
   {
     -- Set lualine as statusline
@@ -219,13 +195,13 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'tokyonight',
+        theme = 'catppuccin',
         component_separators = '|',
         section_separators = '',
       },
     },
   },
-
+  'bullets-vim/bullets.vim',
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -300,7 +276,6 @@ require('lazy').setup({
       },
     },
   },
-  { import = "plugins.moveline" },
 -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -314,7 +289,9 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+  { import = 'plugins' },
 }, {})
+
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -682,15 +659,7 @@ end, { desc = "Spelling Suggestions" })
 vim.opt.linebreak = true
 
 
--- Add mappings for moveline
-local moveline = require('moveline')
-vim.keymap.set('n', '[e', moveline.up, { desc = 'Move line up' })
-vim.keymap.set('n', ']e', moveline.down, { desc = 'Move line down' })
-vim.keymap.set('v', '[e', moveline.block_up, { desc = 'Move visual block up' })
-vim.keymap.set('v', ']e', moveline.block_down, { desc = 'Move visual block down'})
-vim.keymap.set('n', '[t', '<cmd>tabp<cr>', { desc = 'Next tab' })
-vim.keymap.set('n', ']t', '<cmd>tabn<cr>', { desc = 'Previous tab' })
-vim.keymap.set('n', ']tn', '<cmd>tabnew<cr>', { desc = 'New tab' })
-vim.keymap.set('n', ']b', '<cmd>bn<cr>', { desc = 'Next buffer' })
-vim.keymap.set('n', '[b', '<cmd>bp<cr>', { desc = 'Previous buffer' })
+
+-- Mapping for Obsidian
+vim.keymap.set('n', '<leader>oo', '<cmd>cd /Users/k-soomro/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain<cr>', { desc = 'Change to [O]bsidian vault' })
 

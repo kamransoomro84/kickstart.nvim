@@ -61,7 +61,7 @@ return {
         end,
         opts = { buffer = true, expr = true },
       },
-      ["<leader>oo"] = {
+      ["<leader>oa"] = {
         action = ':ObsidianOpen<CR>',
       },
       ["<leader>ob"] = {

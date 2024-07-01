@@ -1,0 +1,18 @@
+return {}
+-- return {
+--   "folke/tokyonight.nvim",
+--   lazy = false,
+--   opts = { style = "night" },
+--   config = function()
+--       on_highlights = function(highlights, colors)
+--         highlights["@markup.strong"] = {
+--           fg = colors.orange,
+--           bold = true
+--         }
+--         highlights["@markup.italic"] = {
+--           italic = true,
+--           fg = colors.cyan
+--         }
+--       end
+--   end
+-- }
